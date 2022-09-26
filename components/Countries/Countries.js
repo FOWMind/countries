@@ -13,10 +13,17 @@ export function Countries({ countries }) {
 }
 
 const CountriesStyled = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  background-color: lightblue;
-  padding: 2rem 4rem;
+  padding: 2rem;
+
+  @media screen and (min-width: 700px) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
 `

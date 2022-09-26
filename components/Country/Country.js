@@ -36,22 +36,57 @@ export function Country({ country }) {
 
 const CountryStyled = styled.div`
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+  box-shadow: 0 5px 15px 0 rgb(0 0 0 / 10%);
   overflow-x: hidden;
-  width: 19%;
-  height: 400px;
-  margin-right: 8%;
-  margin-bottom: 8%;
+  margin-bottom: 2rem;
 
-  &:nth-of-type(4n) {
-    margin-right: 0;
+  @media screen and (min-width: 700px) {
+    margin-right: 4%;
+    margin-bottom: 4%;
+  }
+
+  @media screen and (min-width: 700px) and (max-width: 1023px) {
+    width: 48%;
+
+    &:nth-of-type(2n) {
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (min-width: 1024px) and (max-width: 1299px) {
+    width: 30.66%;
+
+    &:nth-of-type(3n) {
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (min-width: 1300px) {
+    width: 22%;
+    height: 400px;
+
+    &:nth-of-type(4n) {
+      margin-right: 0;
+    }
   }
 `
 
 const CountryImageContainer = styled.div`
   width: 100%;
-  height: 200px;
+  height: 45vw;
+
+  @media screen and (min-width: 700px) {
+    height: 30vw;
+  }
+
+  @media screen and (min-width: 1024px) {
+    height: 20vw;
+  }
+
+  @media screen and (min-width: 1300px) {
+    height: 180px;
+  }
 `
 
 const CountryImage = styled.img`

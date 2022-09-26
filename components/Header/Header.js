@@ -12,11 +12,16 @@ export function Header() {
 }
 
 const HeaderStyled = styled.header`
-  padding: 2rem 4rem;
+  padding: 2rem;
   background-color: hsl(0, 0%, 100%);
   display: flex;
   justify-content: space-between;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+
+  @media screen and (min-width: 1024px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
 `
 
 const HeaderLogo = styled.div``
