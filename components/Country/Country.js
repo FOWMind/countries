@@ -1,38 +1,46 @@
+import Link from "next/link"
 import styled from "styled-components"
 
 export function Country({ country }) {
   const { flags, name, population, region, capital } = country
   return (
     <CountryStyled>
-      <CountryImageContainer>
-        <CountryImage src={flags?.png} alt="" width="250" height="200" />
-      </CountryImageContainer>
-      <CountryList>
-        <CountryName>{name.common}</CountryName>
-        <CountryListItem>
-          <CountryListItemName>Population:</CountryListItemName> {population}
-        </CountryListItem>
+      <Link href={`/country/${name.common}`} passHref>
+        <CountryClickable>
+          <CountryImageContainer>
+            <CountryImage src={flags?.svg} alt="" width="250" height="200" />
+          </CountryImageContainer>
+          <CountryList>
+            <CountryName>{name.common}</CountryName>
+            <CountryListItem>
+              <CountryListItemName>Population:</CountryListItemName>{" "}
+              {population}
+            </CountryListItem>
 
-        <CountryListItem>
-          <CountryListItemName>Region:</CountryListItemName> {region}
-        </CountryListItem>
+            <CountryListItem>
+              <CountryListItemName>Region:</CountryListItemName> {region}
+            </CountryListItem>
 
-        {capital && (
-          <CountryListItem>
-            <CountryListItemName>Capital:</CountryListItemName>{" "}
-            {capital.length === 0
-              ? capital[0]
-              : capital.map((singleCapital, index) => {
-                  // Doesn't show comma when it is the last
-                  if (index + 1 === capital.length) return singleCapital
-                  return `${singleCapital}, `
-                })}
-          </CountryListItem>
-        )}
-      </CountryList>
+            {capital && (
+              <CountryListItem>
+                <CountryListItemName>Capital:</CountryListItemName>{" "}
+                {capital.length === 0
+                  ? capital[0]
+                  : capital.map((singleCapital, index) => {
+                      // Doesn't show comma when it is the last
+                      if (index + 1 === capital.length) return singleCapital
+                      return `${singleCapital}, `
+                    })}
+              </CountryListItem>
+            )}
+          </CountryList>
+        </CountryClickable>
+      </Link>
     </CountryStyled>
   )
 }
+
+const CountryClickable = styled.a``
 
 const CountryStyled = styled.div`
   background-color: #fff;
@@ -64,7 +72,6 @@ const CountryStyled = styled.div`
 
   @media screen and (min-width: 1300px) {
     width: 22%;
-    height: 400px;
 
     &:nth-of-type(4n) {
       margin-right: 0;
