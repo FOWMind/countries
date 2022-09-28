@@ -36,14 +36,7 @@ export default function Home() {
     <>
       <Head>
         <title>Where in the world?</title>
-        <meta
-          name="description"
-          content="Search the country and get its details!"
-        />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Header />
       {countries.length && <Countries countries={countries} />}
     </>
   )
