@@ -1,11 +1,13 @@
 import Link from "next/link"
 import styled from "styled-components"
+import { arrayToListItem } from "../../utilities"
 
 export function Country({ country }) {
   const { flags, name, population, region, capital } = country
+
   return (
     <CountryStyled>
-      <Link href={`/country/${name.common}`} passHref>
+      <Link href={`/country/${name.official}`} passHref>
         <CountryClickable>
           <CountryImageContainer>
             <CountryImage src={flags?.svg} alt="" width="250" height="200" />
@@ -24,13 +26,7 @@ export function Country({ country }) {
             {capital && (
               <CountryListItem>
                 <CountryListItemName>Capital:</CountryListItemName>{" "}
-                {capital.length === 0
-                  ? capital[0]
-                  : capital.map((singleCapital, index) => {
-                      // Doesn't show comma when it is the last
-                      if (index + 1 === capital.length) return singleCapital
-                      return `${singleCapital}, `
-                    })}
+                {arrayToListItem(country.capital)}
               </CountryListItem>
             )}
           </CountryList>

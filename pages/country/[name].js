@@ -2,6 +2,7 @@ import Link from "next/link"
 import styled from "styled-components"
 import { Button } from "../../components/Layout"
 import { useIsMounted } from "../../hooks/useIsMounted"
+import { arrayToListItem } from "../../utilities"
 
 export default function CountryDetail({ country }) {
   const isMounted = useIsMounted()
@@ -15,6 +16,14 @@ export default function CountryDetail({ country }) {
     const nativeLanguage = countryLanguages[countryLanguages.length - 1][0]
     const nativeName = country.name.nativeName[nativeLanguage].common
     return nativeName
+  }
+
+  const getCurrencies = (country) => {
+    const currenciesList = Object.values(country.currencies)
+    if (currenciesList.length <= 1) return currenciesList[0].name
+
+    const currenciesNames = currenciesList.map((currency) => currency.name)
+    return arrayToListItem(currenciesNames)
   }
 
   return (
@@ -41,37 +50,35 @@ export default function CountryDetail({ country }) {
               </CountryInfoItem>
 
               <CountryInfoItem>
-                <CountryInfoItemName>Region</CountryInfoItemName>{" "}
-                {getNativeName(country)}
+                <CountryInfoItemName>Region:</CountryInfoItemName>{" "}
+                {country.region}
               </CountryInfoItem>
 
               <CountryInfoItem>
                 <CountryInfoItemName>Sub Region:</CountryInfoItemName>{" "}
-                {getNativeName(country)}
+                {country.subregion}
               </CountryInfoItem>
 
               <CountryInfoItem>
                 <CountryInfoItemName>Capital:</CountryInfoItemName>{" "}
-                {getNativeName(country)}
+                {arrayToListItem(country.capital)}
               </CountryInfoItem>
             </CountryInfoColumn>
 
             <CountryInfoColumn>
               <CountryInfoItem>
                 <CountryInfoItemName>Top level domain:</CountryInfoItemName>{" "}
-                {getNativeName(country)}
+                {arrayToListItem(country.tld)}
               </CountryInfoItem>
 
               <CountryInfoItem>
                 <CountryInfoItemName>Currencies:</CountryInfoItemName>{" "}
-                {getNativeName(country)}
+                {getCurrencies(country)}
               </CountryInfoItem>
 
               <CountryInfoItem>
                 <CountryInfoItemName>Languages:</CountryInfoItemName>{" "}
-                {Object.entries(country.languages).map(
-                  (language) => language[1]
-                )}
+                {arrayToListItem(Object.values(country.languages))}
               </CountryInfoItem>
             </CountryInfoColumn>
           </CountryInfo>
