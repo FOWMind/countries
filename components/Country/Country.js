@@ -46,8 +46,27 @@ const CountryStyled = styled.div`
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 15px 0 rgb(0 0 0 / 10%);
-  overflow-x: hidden;
   margin-bottom: 2rem;
+  transition: transform 0.3s 0.1s;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+
+    &::before {
+      bottom: -10px;
+    }
+  }
 
   @media screen and (min-width: 700px) {
     margin-right: 4%;
@@ -101,6 +120,7 @@ const CountryImage = styled.img`
   height: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: 10px 10px 0 0;
 `
 
 const CountryList = styled.ul`
