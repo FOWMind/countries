@@ -2,28 +2,17 @@ import Link from "next/link"
 import styled from "styled-components"
 import { Button } from "../../components/Layout"
 import { useIsMounted } from "../../hooks/useIsMounted"
-import { arrayToListItem } from "../../utilities"
+import {
+  arrayToListItem,
+  getNativeCountryName,
+  getCountryCurrencies,
+} from "../../utilities"
 
 export default function CountryDetail({ country }) {
   const isMounted = useIsMounted()
 
   if (!isMounted) {
     return <p>Loading...</p>
-  }
-
-  const getNativeName = (country) => {
-    const countryLanguages = Object.entries(country.languages)
-    const nativeLanguage = countryLanguages[countryLanguages.length - 1][0]
-    const nativeName = country.name.nativeName[nativeLanguage].common
-    return nativeName
-  }
-
-  const getCurrencies = (country) => {
-    const currenciesList = Object.values(country.currencies)
-    if (currenciesList.length <= 1) return currenciesList[0].name
-
-    const currenciesNames = currenciesList.map((currency) => currency.name)
-    return arrayToListItem(currenciesNames)
   }
 
   return (
@@ -41,7 +30,7 @@ export default function CountryDetail({ country }) {
             <CountryInfoColumn>
               <CountryInfoItem>
                 <CountryInfoItemName>Native Name:</CountryInfoItemName>{" "}
-                {getNativeName(country)}
+                {getNativeCountryName(country)}
               </CountryInfoItem>
 
               <CountryInfoItem>
@@ -73,7 +62,7 @@ export default function CountryDetail({ country }) {
 
               <CountryInfoItem>
                 <CountryInfoItemName>Currencies:</CountryInfoItemName>{" "}
-                {getCurrencies(country)}
+                {getCountryCurrencies(country)}
               </CountryInfoItem>
 
               <CountryInfoItem>
