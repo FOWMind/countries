@@ -2,19 +2,26 @@ import styled from "styled-components"
 import { Header } from "../components"
 import { Layout } from "../components/Layout"
 import "../styles/globals.css"
+import { ThemeProvider } from "../contexts/ThemeContext"
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Header />
-      <AppLayout>
-        <Component {...pageProps} />
-      </AppLayout>
-    </>
+    <ThemeProvider>
+      <Wrapper>
+        <Header />
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
+      </Wrapper>
+    </ThemeProvider>
   )
 }
 
 export default MyApp
+
+const Wrapper = styled.div`
+  background: ${({ theme }) => theme.bodyBg};
+`
 
 const AppLayout = styled(Layout)`
   padding: 2rem;

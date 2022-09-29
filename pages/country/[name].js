@@ -96,6 +96,7 @@ const CountryImage = styled.img`
 const CountryText = styled.div`
   width: 100%;
   max-width: 700px;
+  color: ${({ theme }) => theme.mainClr};
 `
 
 const CountryName = styled.h1`

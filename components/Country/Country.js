@@ -39,7 +39,7 @@ export function Country({ country }) {
 const CountryClickable = styled.a``
 
 const CountryStyled = styled.div`
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.mainBg};
   border-radius: 10px;
   box-shadow: 0 5px 15px 0 rgb(0 0 0 / 10%);
   margin-bottom: 2rem;
@@ -122,6 +122,7 @@ const CountryImage = styled.img`
 const CountryList = styled.ul`
   padding: 2rem;
   list-style-type: none;
+  color: ${({ theme }) => theme.mainClr};
 `
 
 const CountryName = styled.li`
