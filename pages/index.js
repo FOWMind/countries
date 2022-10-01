@@ -1,43 +1,69 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-import { Countries } from "../components/Countries/Countries";
+import { Countries } from "../components";
+import { Search } from "../components";
+import { useIsMounted } from "../hooks";
 
-export default function Home() {
-  const [countries, setCountries] = useState([]);
+export default function Home({ countries }) {
+  const isMounted = useIsMounted();
+  const [search, setSearch] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState(countries);
 
   useEffect(() => {
-    const fetchCountries = () => {
-      fetch("https://restcountries.com/v3.1/all")
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((data) => {
-          const countriesData = data.slice(0, 50);
-          console.log(countriesData);
-          if (countriesData) {
-            setCountries(countriesData);
-          }
-        })
-        .catch((err) => console.error(err));
+    if (!search) {
+      return setFilteredCountries(countries);
+    }
+
+    const getCountryByName = async (name) => {
+      try {
+        const response = await fetch(
+          `https://restcountries.com/v3.1/name/${name}`
+        );
+        if (response.ok) {
+          const results = await response.json();
+          return setFilteredCountries(results);
+        } else {
+          return setFilteredCountries([]);
+        }
+      } catch (err) {
+        return setFilteredCountries([]);
+      }
     };
 
-    fetchCountries();
-  }, []);
+    getCountryByName(search);
+  }, [search, countries]);
 
-  useEffect(() => {
-    if (countries.length) {
-      console.log(countries);
-    }
-  }, [countries]);
+  if (!isMounted) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <Head>
         <title>Where in the world?</title>
       </Head>
-      {countries.length > 0 && <Countries countries={countries} />}
+      <Search setSearch={setSearch} />
+      {filteredCountries.length ? (
+        <Countries countries={filteredCountries} />
+      ) : (
+        <h2>No results</h2>
+      )}
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  const response = await fetch("https://restcountries.com/v3.1/all");
+  if (response.ok) {
+    const countries = await response.json();
+    return {
+      props: {
+        countries,
+      },
+    };
+  }
+  return {
+    notFound: true,
+  };
+};

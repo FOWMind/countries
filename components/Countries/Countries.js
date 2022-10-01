@@ -1,15 +1,14 @@
-import styled from "styled-components"
-import { Country } from "../"
+import styled from "styled-components";
+import { Country } from "../";
 
 export function Countries({ countries }) {
-  if (!countries) return
   return (
     <CountriesStyled>
       {countries.map((country) => (
         <Country key={country.name.common} country={country} />
       ))}
     </CountriesStyled>
-  )
+  );
 }
 
 const CountriesStyled = styled.div`
@@ -19,4 +18,4 @@ const CountriesStyled = styled.div`
     justify-content: flex-start;
     flex-wrap: wrap;
   }
-`
+`;
