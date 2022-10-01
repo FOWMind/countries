@@ -21,6 +21,7 @@ export default MyApp
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.bodyBg};
+  min-height: 100vh;
 `
 
 const AppLayout = styled(Layout)`

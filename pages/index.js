@@ -1,43 +1,43 @@
-import Head from "next/head"
-import { useEffect, useState } from "react"
+import Head from "next/head";
+import { useEffect, useState } from "react";
 
-import { Header } from "../components"
-import { Countries } from "../components/Countries/Countries"
+import { Countries } from "../components/Countries/Countries";
 
 export default function Home() {
-  const [countries, setCountries] = useState([])
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
     const fetchCountries = () => {
       fetch("https://restcountries.com/v3.1/all")
         .then((response) => {
           if (response.ok) {
-            return response.json()
+            return response.json();
           }
         })
         .then((data) => {
-          const countriesData = data.slice(0, 50)
+          const countriesData = data.slice(0, 50);
+          console.log(countriesData);
           if (countriesData) {
-            setCountries(countriesData)
+            setCountries(countriesData);
           }
         })
-        .catch((err) => console.error(err))
-    }
+        .catch((err) => console.error(err));
+    };
 
-    fetchCountries()
-  }, [])
+    fetchCountries();
+  }, []);
 
   useEffect(() => {
     if (countries.length) {
-      console.log(countries)
+      console.log(countries);
     }
-  }, [countries])
+  }, [countries]);
   return (
     <>
       <Head>
         <title>Where in the world?</title>
       </Head>
-      {countries.length && <Countries countries={countries} />}
+      {countries.length > 0 && <Countries countries={countries} />}
     </>
-  )
+  );
 }

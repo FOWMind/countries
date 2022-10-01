@@ -1,6 +1,6 @@
-import { isEqual } from "lodash"
-import { createContext, useState, useEffect } from "react"
-import { ThemeProvider as StyledProvider } from "styled-components"
+import { isEqual } from "lodash";
+import { createContext, useState, useEffect } from "react";
+import { ThemeProvider as StyledProvider } from "styled-components";
 
 export const themes = {
   light: {
@@ -13,36 +13,36 @@ export const themes = {
     mainBg: "hsl(209, 23%, 22%)",
     mainClr: "hsl(0, 0%, 100%)",
   },
-}
+};
 
 export const ThemeContext = createContext({
   themes: themes.light,
   toggleTheme: () => {},
-})
+});
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(themes.dark)
-  const themeKey = "countries-app-theme-cfg"
+  const [theme, setTheme] = useState(themes.light);
+  const themeKey = "countries-app-theme-cfg";
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const localTheme = JSON.parse(localStorage.getItem(themeKey))
+      const localTheme = JSON.parse(localStorage.getItem(themeKey));
       if (localTheme) {
-        setTheme(localTheme)
+        setTheme(localTheme);
       }
     }
-  }, [])
+  }, []);
 
   const toggleTheme = () => {
     if (typeof window !== "undefined") {
-      const newTheme = isEqual(theme, themes.dark) ? themes.light : themes.dark
-      setTheme(newTheme)
-      localStorage.setItem(themeKey, JSON.stringify(newTheme))
+      const newTheme = isEqual(theme, themes.dark) ? themes.light : themes.dark;
+      setTheme(newTheme);
+      localStorage.setItem(themeKey, JSON.stringify(newTheme));
     }
-  }
+  };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <StyledProvider theme={theme}>{children}</StyledProvider>
     </ThemeContext.Provider>
-  )
+  );
 }

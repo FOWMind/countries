@@ -1,4 +1,5 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import { ToggleTheme } from "../Layout";
 
 export function Header() {
   return (
@@ -6,9 +7,9 @@ export function Header() {
       <HeaderLogo>
         <HeaderLogoText>Where in the world?</HeaderLogoText>
       </HeaderLogo>
-      {/* <ToggleTheme /> */}
+      <ToggleTheme />
     </HeaderStyled>
-  )
+  );
 }
 
 const HeaderStyled = styled.header`
@@ -22,12 +23,12 @@ const HeaderStyled = styled.header`
     padding-left: 4rem;
     padding-right: 4rem;
   }
-`
+`;
 
-const HeaderLogo = styled.div``
+const HeaderLogo = styled.div``;
 
 const HeaderLogoText = styled.h1`
   color: ${({ theme }) => theme.mainClr};
   font-size: 1.5rem;
   font-weight: 900;
-`
+`;
