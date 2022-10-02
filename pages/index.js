@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { Countries } from "../components";
 import { Search } from "../components";
+import { Paragraph } from "../components";
 import { useIsMounted } from "../hooks";
 
 export default function Home({ countries }) {
@@ -47,7 +48,7 @@ export default function Home({ countries }) {
       {filteredCountries.length ? (
         <Countries countries={filteredCountries} />
       ) : (
-        <h2>No results</h2>
+        <Paragraph>No results for &quot;{search.toString()}&quot;</Paragraph>
       )}
     </>
   );
