@@ -7,11 +7,13 @@ export const themes = {
     bodyBg: "hsl(0, 0%, 98%)",
     mainBg: "hsl(0, 0%, 100%)",
     mainClr: "hsl(200, 15%, 8%)",
+    shadowClr: "rgba(0, 0, 0, 0.1)",
   },
   dark: {
     bodyBg: "hsl(207, 26%, 17%)",
     mainBg: "hsl(209, 23%, 22%)",
     mainClr: "hsl(0, 0%, 100%)",
+    shadowClr: "rgba(0, 0, 0, 0.1)",
   },
 };
 

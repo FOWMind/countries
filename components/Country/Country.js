@@ -1,9 +1,9 @@
-import Link from "next/link"
-import styled from "styled-components"
-import { arrayToListItem } from "../../utilities"
+import Link from "next/link";
+import styled from "styled-components";
+import { arrayToListItem } from "../../utilities";
 
 export function Country({ country }) {
-  const { flags, name, population, region, capital } = country
+  const { flags, name, population, region, capital } = country;
 
   return (
     <CountryStyled>
@@ -33,15 +33,15 @@ export function Country({ country }) {
         </CountryClickable>
       </Link>
     </CountryStyled>
-  )
+  );
 }
 
-const CountryClickable = styled.a``
+const CountryClickable = styled.a``;
 
 const CountryStyled = styled.div`
   background-color: ${({ theme }) => theme.mainBg};
-  border-radius: 10px;
-  box-shadow: 0 5px 15px 0 rgb(0 0 0 / 10%);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px 0 ${({ theme }) => theme.shadowClr};
   margin-bottom: 2rem;
   transition: transform 0.3s 0.1s;
   position: relative;
@@ -92,7 +92,7 @@ const CountryStyled = styled.div`
       margin-right: 0;
     }
   }
-`
+`;
 
 const CountryImageContainer = styled.div`
   width: 100%;
@@ -109,33 +109,33 @@ const CountryImageContainer = styled.div`
   @media screen and (min-width: 1300px) {
     height: 180px;
   }
-`
+`;
 
 const CountryImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: 10px 10px 0 0;
-`
+  border-radius: 5px 5px 0 0;
+`;
 
 const CountryList = styled.ul`
   padding: 2rem;
   list-style-type: none;
   color: ${({ theme }) => theme.mainClr};
-`
+`;
 
 const CountryName = styled.li`
   font-weight: 900;
   font-size: 1.5rem;
   margin-bottom: 1rem;
-`
+`;
 
 const CountryListItem = styled.li`
   margin-bottom: 0.5rem;
   font-size: 1rem;
-`
+`;
 
 const CountryListItemName = styled.strong`
   font-weight: 900;
-`
+`;

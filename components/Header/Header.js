@@ -17,7 +17,7 @@ const HeaderStyled = styled.header`
   background-color: ${({ theme }) => theme.mainBg};
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 5px 10px 0 ${({ theme }) => theme.shadowClr};
 
   @media screen and (min-width: 1024px) {
     padding-left: 4rem;
