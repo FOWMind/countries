@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import { Countries } from "../components";
 import { Search } from "../components";
-import { Paragraph } from "../components";
 import { useIsMounted } from "../hooks";
 
 export default function Home({ countries }) {
