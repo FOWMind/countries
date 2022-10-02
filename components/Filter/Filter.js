@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Select from "react-select";
+import styled from "styled-components";
 import { ThemeContext } from "../../contexts";
 
 const options = [
@@ -36,17 +37,28 @@ export function Filter() {
   const selectStyles = {
     container: (styles) => ({
       ...styles,
-      display: "inline-block",
       boxShadow: `0 0 15px 0 ${theme.shadowClr}`,
+      fontWeight: "600",
     }),
     control: (styles) => ({
       ...styles,
       minHeight: "50px",
       padding: "0 1rem",
+      border: "none",
+      cursor: "pointer",
+    }),
+    valueContainer: (styles) => ({
+      ...styles,
+      padding: 0,
+    }),
+    menu: (styles) => ({
+      ...styles,
+      padding: ".5rem 0",
     }),
     option: (styles) => ({
       ...styles,
       color: theme.mainClr,
+      padding: ".5rem 1rem",
     }),
   };
 
@@ -68,15 +80,22 @@ export function Filter() {
     console.log(selectedOption);
   };
   return (
-    <Select
-      options={options}
-      defaultValue={defaultOption}
-      isClearable={true}
-      isSearchable={false}
-      placeholder={"Filter by region"}
-      onChange={handleChange}
-      styles={selectStyles}
-      theme={selectTheme}
-    />
+    <FilterStyled>
+      <Select
+        options={options}
+        defaultValue={defaultOption}
+        isClearable={true}
+        isSearchable={false}
+        placeholder={"Filter by region"}
+        onChange={handleChange}
+        styles={selectStyles}
+        theme={selectTheme}
+      />
+    </FilterStyled>
   );
 }
+
+const FilterStyled = styled.div`
+  width: 48%;
+  max-width: 300px;
+`;

@@ -26,19 +26,25 @@ export function SearchView({
 }
 
 const InputBox = styled.div`
-  display: flex;
-  align-items: center;
+  width: 100%;
   border-radius: 5px;
   box-shadow: 0 0 15px 0 ${({ theme }) => theme.shadowClr};
   background-color: ${({ theme }) => theme.mainBg};
   color: ${({ theme }) => theme.mainClr};
   position: relative;
+  margin: 0 4% 1rem 0;
+
+  @media screen and (min-width: 850px) {
+    width: 48%;
+    max-width: 500px;
+  }
 `;
 
 const InputLabel = styled.label`
   position: absolute;
-  top: auto;
+  top: 50%;
   left: 2rem;
+  transform: translateY(-50%);
 
   & > svg {
     font-size: 1.25rem;

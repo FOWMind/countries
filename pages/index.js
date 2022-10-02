@@ -1,8 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-import { Countries, Filter } from "../components";
-import { Search } from "../components";
+import { Filters, Countries } from "../components";
 import { useIsMounted } from "../hooks";
 
 export default function Home({ countries }) {
@@ -43,8 +42,7 @@ export default function Home({ countries }) {
       <Head>
         <title>Where in the world?</title>
       </Head>
-      <Search setSearch={setSearch} />
-      <Filter />
+      <Filters setSearch={setSearch} />
       <Countries countries={filteredCountries} search={search} />
     </>
   );
