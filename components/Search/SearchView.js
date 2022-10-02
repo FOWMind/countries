@@ -32,12 +32,13 @@ const InputBox = styled.div`
   box-shadow: 0 0 15px 0 ${({ theme }) => theme.shadowClr};
   background-color: ${({ theme }) => theme.mainBg};
   color: ${({ theme }) => theme.mainClr};
+  position: relative;
 `;
 
 const InputLabel = styled.label`
   position: absolute;
   top: auto;
-  left: 4rem;
+  left: 2rem;
 
   & > svg {
     font-size: 1.25rem;
