@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { AiOutlineSearch } from "react-icons/ai";
 
 export function SearchView({
   searchInputRef,
@@ -7,7 +8,8 @@ export function SearchView({
   handleInput,
 }) {
   return (
-    <form style={{ marginBottom: "2rem" }}>
+    <InputBox>
+      <AiOutlineSearch />
       <InputStyled
         ref={searchInputRef}
         type="text"
@@ -16,21 +18,34 @@ export function SearchView({
         onChange={handleChange}
         onInput={handleInput}
       />
-    </form>
+    </InputBox>
   );
 }
 
+const InputBox = styled.label`
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 0 ${({ theme }) => theme.shadowClr};
+  background-color: ${({ theme }) => theme.mainBg};
+  color: ${({ theme }) => theme.mainClr};
+  padding: 0 2rem;
+
+  & > svg {
+    font-size: 1.25rem;
+  }
+`;
+
 const InputStyled = styled.input`
   border: 2px solid transparent;
-  border-radius: 5px;
   outline: none;
   display: block;
   width: 100%;
   height: 50px;
-  background-color: ${({ theme }) => theme.mainBg};
-  color: ${({ theme }) => theme.mainClr};
   font-family: inherit;
-  font-size: 0.9rem;
-  box-shadow: 0 0 15px 0 ${({ theme }) => theme.shadowClr};
-  padding: 0 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.mainClr};
+  background: none;
+  padding: 0 1rem;
 `;

@@ -45,11 +45,7 @@ export default function Home({ countries }) {
         <title>Where in the world?</title>
       </Head>
       <Search setSearch={setSearch} />
-      {filteredCountries.length ? (
-        <Countries countries={filteredCountries} />
-      ) : (
-        <Paragraph>No results for &quot;{search.toString()}&quot;</Paragraph>
-      )}
+      <Countries countries={filteredCountries} search={search} />
     </>
   );
 }
