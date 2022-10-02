@@ -9,9 +9,12 @@ export function SearchView({
 }) {
   return (
     <InputBox>
-      <AiOutlineSearch />
+      <InputLabel htmlFor="searchInput">
+        <AiOutlineSearch />
+      </InputLabel>
       <InputStyled
         ref={searchInputRef}
+        id="searchInput"
         type="text"
         placeholder="Search for a country"
         value={value}
@@ -22,17 +25,23 @@ export function SearchView({
   );
 }
 
-const InputBox = styled.label`
+const InputBox = styled.div`
   display: flex;
   align-items: center;
   border-radius: 5px;
   box-shadow: 0 0 15px 0 ${({ theme }) => theme.shadowClr};
   background-color: ${({ theme }) => theme.mainBg};
   color: ${({ theme }) => theme.mainClr};
-  padding: 0 2rem;
+`;
+
+const InputLabel = styled.label`
+  position: absolute;
+  top: auto;
+  left: 4rem;
 
   & > svg {
     font-size: 1.25rem;
+    vertical-align: middle;
   }
 `;
 
@@ -47,5 +56,5 @@ const InputStyled = styled.input`
   font-size: 1rem;
   color: ${({ theme }) => theme.mainClr};
   background: none;
-  padding: 0 1rem;
+  padding: 0 2rem 0 4rem;
 `;
