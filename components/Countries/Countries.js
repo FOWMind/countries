@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Country, Paragraph } from "../";
 
-export function Countries({ countries, search }) {
+export function Countries({ filteredCountries, search }) {
   return (
     <CountriesStyled>
-      {countries.length ? (
-        countries.map((country) => (
+      {filteredCountries.length ? (
+        filteredCountries.map((country) => (
           <Country key={country.name.common} country={country} />
         ))
       ) : (

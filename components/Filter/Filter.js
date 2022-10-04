@@ -10,7 +10,7 @@ const options = [
   },
   {
     label: "America",
-    value: "america",
+    value: "americas",
   },
   {
     label: "Asia",
@@ -31,7 +31,7 @@ const defaultOption = {
   value: "",
 };
 
-export function Filter() {
+export function Filter({ setFilteredItems, allCountries }) {
   const { theme } = useContext(ThemeContext);
 
   const selectStyles = {
@@ -77,7 +77,14 @@ export function Filter() {
   });
 
   const handleChange = (selectedOption) => {
-    console.log(selectedOption);
+    if (!selectedOption) {
+      return setFilteredItems(allCountries);
+    }
+    const selectedRegion = selectedOption.value.toLowerCase();
+    const newCountries = allCountries.filter(
+      (c) => c.region.toLowerCase() === selectedRegion
+    );
+    setFilteredItems(newCountries);
   };
   return (
     <FilterStyled>

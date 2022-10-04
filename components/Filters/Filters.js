@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Filter, Search } from "../";
 
-export function Filters({ setSearch }) {
+export function Filters({ setSearch, setFilteredItems, allCountries }) {
   return (
     <FiltersStyled>
       <Search setSearch={setSearch} />
-      <Filter />
+      <Filter setFilteredItems={setFilteredItems} allCountries={allCountries} />
     </FiltersStyled>
   );
 }
