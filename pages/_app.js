@@ -1,8 +1,8 @@
-import styled from "styled-components"
-import { Header } from "../components"
-import { Layout } from "../components/Layout"
-import "../styles/globals.css"
-import { ThemeProvider } from "../contexts/ThemeContext"
+import styled from "styled-components";
+import { Header } from "../components";
+import { Layout } from "../components/Layout";
+import "../styles/globals.css";
+import { ThemeProvider } from "../contexts";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -14,15 +14,15 @@ function MyApp({ Component, pageProps }) {
         </AppLayout>
       </Wrapper>
     </ThemeProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.bodyBg};
   min-height: 100vh;
-`
+`;
 
 const AppLayout = styled(Layout)`
   padding: 2rem;
@@ -31,4 +31,4 @@ const AppLayout = styled(Layout)`
     padding-left: 4rem;
     padding-right: 4rem;
   }
-`
+`;

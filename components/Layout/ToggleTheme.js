@@ -2,7 +2,7 @@ import { isEqual } from "lodash";
 import { useContext, useEffect, useState } from "react";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
 import styled from "styled-components";
-import { ThemeContext, themes } from "../../contexts/ThemeContext";
+import { ThemeContext, themes } from "../../contexts";
 
 export function ToggleTheme() {
   const [isTriggered, setTriggered] = useState(false);
