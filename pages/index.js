@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { getCountries } from "../api";
 
-import { Countries, Filters } from "../components";
+import { Countries, Filters, Loading } from "../components";
 import { useIsMounted } from "../hooks";
 
 export default function Home({ countries }) {
@@ -21,7 +21,7 @@ export default function Home({ countries }) {
   }, [search, countries]);
 
   if (!isMounted) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (
