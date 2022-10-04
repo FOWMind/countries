@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { getCountries } from "../api/CountriesAPI";
+import { getCountries } from "../api";
 
 import { Countries, Filters } from "../components";
 import { useIsMounted } from "../hooks";
