@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { getCountries } from "../api/CountriesAPI";
 
-import { Filters, Countries } from "../components";
+import { Countries, Filters } from "../components";
 import { useIsMounted } from "../hooks";
 
 export default function Home({ countries }) {
@@ -14,23 +15,9 @@ export default function Home({ countries }) {
       return setFilteredCountries(countries);
     }
 
-    const getCountryByName = async (name) => {
-      try {
-        const response = await fetch(
-          `https://restcountries.com/v3.1/name/${name}`
-        );
-        if (response.ok) {
-          const results = await response.json();
-          return setFilteredCountries(results);
-        } else {
-          return setFilteredCountries([]);
-        }
-      } catch (err) {
-        return setFilteredCountries([]);
-      }
-    };
-
-    getCountryByName(search);
+    getCountries({ endpoint: `/name/${search}` }).then((data) =>
+      setFilteredCountries(data || [])
+    );
   }, [search, countries]);
 
   if (!isMounted) {
@@ -53,9 +40,8 @@ export default function Home({ countries }) {
 }
 
 export const getStaticProps = async () => {
-  const response = await fetch("https://restcountries.com/v3.1/all");
-  if (response.ok) {
-    const countries = await response.json();
+  const countries = await getCountries({ endpoint: "/all" });
+  if (countries) {
     return {
       props: {
         countries,
