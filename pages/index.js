@@ -31,7 +31,7 @@ export default function Home({ countries }) {
       </Head>
       <Filters
         setSearch={setSearch}
-        setFilteredItems={setFilteredCountries}
+        setFilteredCountries={setFilteredCountries}
         allCountries={countries}
       />
       <Countries filteredCountries={filteredCountries} search={search} />

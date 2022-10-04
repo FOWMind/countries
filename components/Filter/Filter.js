@@ -4,19 +4,19 @@ import { FilterView } from "./";
 export function Filter({
   defaultOption,
   options,
-  setFilteredItems,
+  setFilteredCountries,
   allCountries,
 }) {
   const { selectStyles, selectTheme } = useSelectStyles();
 
-  const handleChange = (selectedOption) => {
-    if (!selectedOption) return setFilteredItems(allCountries);
+  const handleChange = (selectedRegion) => {
+    if (!selectedRegion) return setFilteredCountries(allCountries);
+    const selectedRegionValue = selectedRegion.value.toLowerCase();
 
-    const selectedRegion = selectedOption.value.toLowerCase();
-    const newCountries = allCountries.filter(
-      (c) => c.region.toLowerCase() === selectedRegion
+    const countriesByRegion = allCountries.filter(
+      (c) => c.region.toLowerCase() === selectedRegionValue
     );
-    setFilteredItems(newCountries);
+    setFilteredCountries(countriesByRegion);
   };
 
   return (
