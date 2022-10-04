@@ -1,7 +1,6 @@
 import { useContext } from "react";
-import Select from "react-select";
-import styled from "styled-components";
 import { ThemeContext } from "../../contexts";
+import { FilterView } from "./";
 
 const options = [
   {
@@ -86,23 +85,14 @@ export function Filter({ setFilteredItems, allCountries }) {
     );
     setFilteredItems(newCountries);
   };
+
   return (
-    <FilterStyled>
-      <Select
-        options={options}
-        defaultValue={defaultOption}
-        isClearable={true}
-        isSearchable={false}
-        placeholder={"Filter by region"}
-        onChange={handleChange}
-        styles={selectStyles}
-        theme={selectTheme}
-      />
-    </FilterStyled>
+    <FilterView
+      options={options}
+      defaultOption={defaultOption}
+      handleChange={handleChange}
+      selectStyles={selectStyles}
+      theme={selectTheme}
+    />
   );
 }
-
-const FilterStyled = styled.div`
-  width: 48%;
-  max-width: 300px;
-`;
