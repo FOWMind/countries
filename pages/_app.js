@@ -1,19 +1,25 @@
+import Head from "next/head";
 import styled from "styled-components";
 import { Header } from "../components";
 import { Layout } from "../components/Layout";
-import "../styles/globals.css";
 import { ThemeProvider } from "../contexts";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider>
-      <Wrapper>
-        <Header />
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
-      </Wrapper>
-    </ThemeProvider>
+    <>
+      <Head>
+        <title>Where in the world?</title>
+      </Head>
+      <ThemeProvider>
+        <Wrapper>
+          <Header />
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        </Wrapper>
+      </ThemeProvider>
+    </>
   );
 }
 

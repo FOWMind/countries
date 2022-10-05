@@ -51,9 +51,6 @@ export default function Home({ countries }) {
 
   return (
     <>
-      <Head>
-        <title>Where in the world?</title>
-      </Head>
       <Filters setSearch={setSearch} setCurrentRegion={setCurrentRegion} />
       <Countries filteredCountries={filteredCountries} search={search} />
     </>
