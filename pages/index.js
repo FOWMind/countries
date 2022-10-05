@@ -9,16 +9,41 @@ export default function Home({ countries }) {
   const isMounted = useIsMounted();
   const [search, setSearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries);
+  const [currentRegion, setCurrentRegion] = useState("");
 
   useEffect(() => {
-    if (!search) {
-      return setFilteredCountries(countries);
+    // No search or region
+    if (!search && !currentRegion) {
+      setFilteredCountries(countries);
     }
 
-    getCountries({ endpoint: `/name/${search}` }).then((data) =>
-      setFilteredCountries(data || [])
-    );
-  }, [search, countries]);
+    // Filtered by region
+    if (!search && currentRegion) {
+      const countriesByRegion = countries.filter((country) => {
+        const countryRegion = country.region.toLowerCase();
+        return countryRegion === currentRegion;
+      });
+      setFilteredCountries(countriesByRegion || []);
+    }
+
+    // Filtered by search
+    if (search && !currentRegion) {
+      getCountries({ endpoint: `/name/${search}` }).then((countries) => {
+        setFilteredCountries(countries || []);
+      });
+    }
+
+    // Filtered by search and region
+    if (search && currentRegion) {
+      getCountries({ endpoint: `/name/${search}` }).then((countries) => {
+        const countriesByNameAndRegion = countries.filter((country) => {
+          const countryRegion = country.region.toLowerCase();
+          return countryRegion === currentRegion;
+        });
+        setFilteredCountries(countriesByNameAndRegion || []);
+      });
+    }
+  }, [search, countries, currentRegion]);
 
   if (!isMounted) {
     return <Loading />;
@@ -29,11 +54,7 @@ export default function Home({ countries }) {
       <Head>
         <title>Where in the world?</title>
       </Head>
-      <Filters
-        setSearch={setSearch}
-        setFilteredCountries={setFilteredCountries}
-        allCountries={countries}
-      />
+      <Filters setSearch={setSearch} setCurrentRegion={setCurrentRegion} />
       <Countries filteredCountries={filteredCountries} search={search} />
     </>
   );

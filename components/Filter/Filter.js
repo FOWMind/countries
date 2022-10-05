@@ -1,22 +1,12 @@
 import { useSelectStyles } from "../../hooks/useSelectStyles";
 import { FilterView } from "./";
 
-export function Filter({
-  defaultOption,
-  options,
-  setFilteredCountries,
-  allCountries,
-}) {
+export function Filter({ defaultOption, options, setCurrentRegion }) {
   const { selectStyles, selectTheme } = useSelectStyles();
 
   const handleChange = (selectedRegion) => {
-    if (!selectedRegion) return setFilteredCountries(allCountries);
-    const selectedRegionValue = selectedRegion.value.toLowerCase();
-
-    const countriesByRegion = allCountries.filter(
-      (c) => c.region.toLowerCase() === selectedRegionValue
-    );
-    setFilteredCountries(countriesByRegion);
+    const selectedRegionValue = selectedRegion?.value.toLowerCase();
+    setCurrentRegion(selectedRegionValue);
   };
 
   return (

@@ -2,15 +2,19 @@ import styled from "styled-components";
 import { Filter, Search } from "../";
 import { regionFilterOptions } from "../../utils/constants";
 
-export function Filters({ setSearch, setFilteredCountries, allCountries }) {
+export function Filters({
+  setSearch,
+  setFilteredCountries,
+  setCurrentRegion,
+  allCountries,
+}) {
   return (
     <FiltersStyled>
       <Search setSearch={setSearch} />
       <Filter
         defaultOption={regionFilterOptions.defaultOption}
         options={regionFilterOptions.options}
-        setFilteredCountries={setFilteredCountries}
-        allCountries={allCountries}
+        setCurrentRegion={setCurrentRegion}
       />
     </FiltersStyled>
   );
