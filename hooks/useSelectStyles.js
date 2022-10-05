@@ -16,10 +16,19 @@ export function useSelectStyles() {
       padding: "0 1rem",
       border: "none",
       cursor: "pointer",
+      transition: "none",
     }),
     valueContainer: (styles) => ({
       ...styles,
       padding: 0,
+    }),
+    dropdownIndicator: (styles) => ({
+      ...styles,
+      transition: "none",
+    }),
+    clearIndicator: (styles) => ({
+      ...styles,
+      transition: "none",
     }),
     menu: (styles) => ({
       ...styles,
