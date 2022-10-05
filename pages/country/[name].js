@@ -83,15 +83,29 @@ const BackButton = styled(Button)`
 `;
 
 const CountryStyled = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @media screen and (min-width: 1250px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 const CountryImage = styled.img`
-  width: 450px;
-  max-height: 350px;
+  width: auto;
+  max-height: 400px;
   object-fit: contain;
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: 1250px) {
+    width: 350px;
+    max-height: 300px;
+    margin-bottom: 0;
+  }
+
+  @media screen and (min-width: 1400px) {
+    width: 450px;
+    max-height: 350px;
+  }
 `;
 
 const CountryText = styled.div`
@@ -109,12 +123,21 @@ const CountryName = styled.h1`
 const CountryInfo = styled.ul`
   list-style-type: none;
   max-height: 150px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+
+  @media screen and (min-width: 1250px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 `;
 
-const CountryInfoColumn = styled.div``;
+const CountryInfoColumn = styled.div`
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: 1250px) {
+    margin-bottom: 0;
+  }
+`;
 
 const CountryInfoItem = styled.li`
   margin-bottom: 0.5rem;
