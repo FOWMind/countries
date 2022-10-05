@@ -2,12 +2,7 @@ import styled from "styled-components";
 import { Filter, Search } from "../";
 import { regionFilterOptions } from "../../utils/constants";
 
-export function Filters({
-  setSearch,
-  setFilteredCountries,
-  setCurrentRegion,
-  allCountries,
-}) {
+export function Filters({ setSearch, setCurrentRegion }) {
   return (
     <FiltersStyled>
       <Search setSearch={setSearch} />
