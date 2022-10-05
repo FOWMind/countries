@@ -122,7 +122,6 @@ const CountryName = styled.h1`
 
 const CountryInfo = styled.ul`
   list-style-type: none;
-  max-height: 150px;
 
   @media screen and (min-width: 1250px) {
     display: flex;
