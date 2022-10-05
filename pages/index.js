@@ -40,7 +40,9 @@ export default function Home({ countries }) {
 }
 
 export const getStaticProps = async () => {
-  const countries = await getCountries({ endpoint: "/all" });
+  const countries = await getCountries({
+    endpoint: "/all?fields=flags,name,population,region,capital",
+  });
   if (countries) {
     return {
       props: {

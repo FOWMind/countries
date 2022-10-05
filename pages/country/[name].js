@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { getCountries } from "../../api";
 import { Button, Loading } from "../../components";
 import { useIsMounted } from "../../hooks/useIsMounted";
 import {
@@ -125,27 +126,24 @@ const CountryInfoItemName = styled.strong`
 
 export const getStaticPaths = async () => {
   return {
-    paths: [{ params: { name: "Guatemala" } }],
+    paths: [],
     fallback: true,
   };
 };
 
 export const getStaticProps = async ({ params }) => {
-  const { name: countryName } = params;
-  const response = await fetch(
-    `https://restcountries.com/v3.1/name/${countryName}`
-  );
-  if (!response.ok) {
+  const { name } = params;
+  const country = await getCountries({
+    endpoint: `/name/${name}?fields=flags,name,population,region,subregion,capital,tld,currencies,languages`,
+  });
+  if (country) {
     return {
-      notFound: true,
+      props: {
+        country: country[0],
+      },
     };
   }
-
-  const country = await response.json();
-
   return {
-    props: {
-      country: country[0],
-    },
+    notFound: true,
   };
 };
