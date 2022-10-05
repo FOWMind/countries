@@ -1,12 +1,13 @@
 import Link from "next/link";
+import { BsArrowLeft } from "react-icons/bs";
 import styled from "styled-components";
 import { getCountries } from "../../api";
 import { Button, Loading } from "../../components";
 import { useIsMounted } from "../../hooks/useIsMounted";
 import {
   arrayToListItem,
-  getNativeCountryName,
   getCountryCurrencies,
+  getNativeCountryName,
 } from "../../utilities";
 
 export default function CountryDetail({ country }) {
@@ -20,7 +21,9 @@ export default function CountryDetail({ country }) {
     <>
       <Link href="/" passHref>
         <a>
-          <BackButton>Back</BackButton>
+          <BackButton>
+            <BsArrowLeft /> Back
+          </BackButton>
         </a>
       </Link>
       <CountryStyled>
@@ -80,6 +83,12 @@ export default function CountryDetail({ country }) {
 
 const BackButton = styled(Button)`
   margin-bottom: 4rem;
+
+  & > svg {
+    font-size: 1.25rem;
+    vertical-align: text-top;
+    margin-right: 0.5rem;
+  }
 `;
 
 const CountryStyled = styled.div`

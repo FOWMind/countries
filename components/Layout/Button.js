@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Button = styled.button`
   all: unset;
@@ -8,9 +8,9 @@ export const Button = styled.button`
   height: 40px;
   padding: 0 2rem;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 600;
   color: ${({ theme }) => theme.mainClr};
   background-color: ${({ theme }) => theme.mainBg};
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
   cursor: pointer;
-`
+`;
