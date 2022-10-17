@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { arrayToListItem } from "../../utilities";
+import { arrayToListItem, formatNumber } from "../../utilities";
 
 export function Country({ country }) {
   const { flags, name, population, region, capital } = country;
@@ -16,7 +16,7 @@ export function Country({ country }) {
             <CountryName>{name.common}</CountryName>
             <CountryListItem>
               <CountryListItemName>Population:</CountryListItemName>{" "}
-              {population}
+              {formatNumber(population)}
             </CountryListItem>
 
             <CountryListItem>

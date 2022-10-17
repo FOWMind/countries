@@ -8,6 +8,7 @@ import {
   arrayToListItem,
   getCountryCurrencies,
   getNativeCountryName,
+  formatNumber,
 } from "../../utilities";
 
 export default function CountryDetail({ country }) {
@@ -39,7 +40,7 @@ export default function CountryDetail({ country }) {
 
               <CountryInfoItem>
                 <CountryInfoItemName>Population:</CountryInfoItemName>{" "}
-                {country.population}
+                {formatNumber(country.population)}
               </CountryInfoItem>
 
               <CountryInfoItem>
